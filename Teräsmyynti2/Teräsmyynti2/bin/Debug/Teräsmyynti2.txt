@@ -1,9 +1,0 @@
-	0	|	Esimerkki	|	
-	0	|	Esimerkki	|	Vuosittainen
-	4	|	petteri	|	Vuosittainen
-	1	|	asd	|	Viikottaiset
-	3	|	jooseåp	|	Viikottaiset
-	2	|	asd	|	Kuukausittaiset
-	0	|	Esimerkki	|	
-	0	|	Esimerkki	|	
-	123123	|	PETTERI	|	
