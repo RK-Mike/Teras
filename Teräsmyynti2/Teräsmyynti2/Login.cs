@@ -26,16 +26,25 @@ namespace Teräsmyynti2
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new Kirjautminen().Show();
-
+            Kirjautminen kirjaudu = new Kirjautminen();
+            kirjaudu.Closed += (s, args) => this.Close();
+            kirjaudu.Show();
         }
 
         // Button clicking avulle piilotetaan Login formi ja siirrytään Tyontekija formiin
         private void button2_Click(object sender, EventArgs e)
         {
+
+            Tyontekija tyoukkoForm = new Tyontekija();
             this.Hide();
-            new Tyontekija().Show();
- 
+            tyoukkoForm.ShowDialog();
+            this.Close();
+           
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 

@@ -17,8 +17,8 @@ namespace Teräsmyynti2
 {
     public partial class Form1 : Form
     {
-        public DataTable table1 = new DataTable();
-        public string lol = "";
+        public DataTable mainTable = new DataTable();
+        public string tbl1Data = "";
 
         public Form1()
         {
@@ -31,28 +31,31 @@ namespace Teräsmyynti2
             sarakeLisa();
 
             // Lisaa esimerkki rivin datagridii
-            table1.Rows.Add(00, "Esimerkki");
+            mainTable.Rows.Add(00, "Esimerkki");
 
-            dataGridView1.DataSource = table1;
+            dataGridView1.DataSource = mainTable;
 
             Styling();
             Import();
 
         }
 
+
+        // Raine TEKI
         public void sarakeLisa()
         {
 
-            lol = "Main";
+            tbl1Data = "Main";
             // Tarvittavat sarakkeet datagridiin
-            table1.Columns.Add("Nimike", typeof(string));
-            table1.Columns.Add("Tiedot", typeof(string));
-            table1.Columns.Add("Kuittaus", typeof(string));
+            mainTable.Columns.Add("Nimike", typeof(string));
+            mainTable.Columns.Add("Tiedot", typeof(string));
+            mainTable.Columns.Add("Kuittaus", typeof(string));
 
 
         }
 
 
+        // Raine TEKI
         // Tekee datagridista jarkevan nakoisen
         private void Styling()
         {
@@ -73,26 +76,28 @@ namespace Teräsmyynti2
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridView1.ColumnHeadersDefaultCellStyle;
 
             dataGridView1.EnableHeadersVisualStyles = false;
-            Nimike.Text = lol;
+            Nimike.Text = tbl1Data;
         }
 
 
         // Tallentaa datagridin muutokset tekstitideostoon reaaliajassa.
+        // MIKAEL TEKI
         public void Tallenna()
         {
-            TextWriter writer = new StreamWriter(lol + ".txt");
+            TextWriter writer = new StreamWriter(tbl1Data + ".txt");
 
             for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
             {
                 for (int x = 0; x < dataGridView1.Columns.Count; x++)
                 {
-                    if (x == dataGridView1.Columns.Count - 1) // Jos viimeneinen sarake
+                    if (x == dataGridView1.Columns.Count - 1) 
                     {
                         writer.Write("\t" + dataGridView1.Rows[i].Cells[x].Value.ToString());
                     }
-
                     else
+                    {
                         writer.Write("\t" + dataGridView1.Rows[i].Cells[x].Value.ToString() + "\t" + "|");
+                    }
 
                 }
                 writer.WriteLine("");
@@ -103,6 +108,7 @@ namespace Teräsmyynti2
         }
 
         // Tallentaa valitun rivin tiedot kuittaus tekstitiedostoon.
+        // MIKAEL TEKI
         public void Kuittaus()
         {
             foreach (DataGridViewRow item in this.dataGridView1.SelectedRows)
@@ -117,24 +123,27 @@ namespace Teräsmyynti2
                 kuittaus.Close();
 
                 MessageBox.Show("Suoritettu onnistuneesti");
-                // dataGridView1.Rows.RemoveAt(item.Index);
-                dataGridView1.DataSource = table1;
+                dataGridView1.DataSource = mainTable;
 
 
             }
         }
 
+        // RAINE TEKI
         // Cleari tyhjentaan datagridin kun uudet tiedot tulevat tekstitideostoista.
         public void Clear()
         {
             for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
             {
                 dataGridView1.Rows.RemoveAt(i);
+
+                // Poistaa Esimerkki rivin
                 i--;
-                while (dataGridView1.Rows.Count == 0) ;
             }
         }
 
+
+        // Mikael TEKI
         // Poistaa valitun rivin kaikki tiedot.
         public void Poista()
         {
@@ -144,11 +153,14 @@ namespace Teräsmyynti2
             }
         }
 
-
+        // RAINE TEKI
         // Lukee ja tuo tekstitiedostoista kaikki tiedot datagridiin.
         public void Import()
         {
-            string[] lines = File.ReadAllLines(lol + ".txt");
+            try
+            {
+            string[] lines = File.ReadAllLines(tbl1Data + ".txt");
+
             string[] data;
 
             for (int i = 0; i < lines.Length; i++)
@@ -162,11 +174,19 @@ namespace Teräsmyynti2
                     row[j] = data[j].Trim();
                 }
 
-                table1.Rows.Add(row);
+                mainTable.Rows.Add(row);
             }
+            }
+            catch(Exception ex)
+            {
+                
+                MessageBox.Show("Käy tarkistamassa tekstitiedostot virheistä    ", ex.Message);
+            }
+
         }
 
 
+       
         // Lukee tekstitiedoston sisallon ja tekee siita pdf tiedoston.
         public void Tulosta()
         {
@@ -175,7 +195,7 @@ namespace Teräsmyynti2
             PdfGraphics graphics = page.Graphics;
             PdfFont font = new PdfStandardFont(PdfFontFamily.TimesRoman, 16);
             PdfStringFormat format = new PdfStringFormat();
-            StreamReader reader = new StreamReader(lol + ".txt", Encoding.ASCII);            
+            StreamReader reader = new StreamReader(tbl1Data + ".txt", Encoding.ASCII);            
             string text = reader.ReadToEnd();
 
 
@@ -187,23 +207,16 @@ namespace Teräsmyynti2
             
             graphics.DrawString(text, font, PdfBrushes.Black, new RectangleF(new PointF(0, 0), page.GetClientSize()), format);
            
-            document.Save(lol + ".pdf");
+            document.Save(tbl1Data + ".pdf");
             
             document.Close(true);
             
-            Process.Start(lol + ".pdf");
+            Process.Start(tbl1Data + ".pdf");
         }
 
 
-
-
-
-
-
-
-
-
-
+        //Nappulat
+        #region
         // Formin sisaiset toiminnot, kutsutaan kaikki voidit.
 
         private void kuittaaBTN_Click_1(object sender, EventArgs e)
@@ -228,26 +241,26 @@ namespace Teräsmyynti2
 
         private void vBTN_Click(object sender, EventArgs e)
         {
-            lol = "Vuosittaiset";
+            tbl1Data = "Vuosittaiset";
             Clear();
             Import();
-            Nimike.Text = lol;
+            Nimike.Text = tbl1Data;
         }
 
         private void kkBTN_Click(object sender, EventArgs e)
         {
-            lol = "Kuukausittaiset";
+            tbl1Data = "Kuukausittaiset";
             Clear();
             Import();
-            Nimike.Text = lol;
+            Nimike.Text = tbl1Data;
         }
 
         public void vkBTN_Click(object sender, EventArgs e)
         {
-            lol = "Viikottaiset";
+            tbl1Data = "Viikottaiset";
             Clear();
             Import();
-            Nimike.Text = lol;
+            Nimike.Text = tbl1Data;
         }
 
         private void yhteenvetoBTN_Click(object sender, EventArgs e)
@@ -255,6 +268,7 @@ namespace Teräsmyynti2
             Process.Start("yhteenveto.txt");
             Nimike.Text = "Yhteenveto";
         }
+        #endregion
 
     }
 }

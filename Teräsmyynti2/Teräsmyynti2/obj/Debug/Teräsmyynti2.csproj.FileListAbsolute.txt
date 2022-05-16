@@ -11,7 +11,6 @@ C:\Users\mikae\OneDrive\Desktop\Teräsmyynti\Teräsmyynti\Teräsmyynti2\Teräsmy
 C:\Users\mikae\OneDrive\Desktop\Teräsmyynti\Teräsmyynti\Teräsmyynti2\Teräsmyynti2\obj\Debug\Teräsmyynti2.Kirjautminen.resources
 C:\Users\mikae\OneDrive\Desktop\Teräsmyynti\Teräsmyynti\Teräsmyynti2\Teräsmyynti2\obj\Debug\Teräsmyynti2.Login.resources
 C:\Users\mikae\OneDrive\Desktop\Teräsmyynti\Teräsmyynti\Teräsmyynti2\Teräsmyynti2\obj\Debug\Teräsmyynti2.Properties.Resources.resources
-C:\Users\mikae\OneDrive\Desktop\Teräsmyynti\Teräsmyynti\Teräsmyynti2\Teräsmyynti2\obj\Debug\Teräsmyynti2.Tiedot.resources
 C:\Users\mikae\OneDrive\Desktop\Teräsmyynti\Teräsmyynti\Teräsmyynti2\Teräsmyynti2\obj\Debug\Teräsmyynti2.csproj.GenerateResource.cache
 C:\Users\mikae\OneDrive\Desktop\Teräsmyynti\Teräsmyynti\Teräsmyynti2\Teräsmyynti2\obj\Debug\Teräsmyynti2.csproj.CoreCompileInputs.cache
 C:\Users\mikae\OneDrive\Desktop\Teräsmyynti\Teräsmyynti\Teräsmyynti2\Teräsmyynti2\obj\Debug\Teräsmyynti2.csproj.CopyComplete

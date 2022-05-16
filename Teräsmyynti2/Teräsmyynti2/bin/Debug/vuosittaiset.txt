@@ -1,2 +1,2 @@
-	1	|	Esimerkki	|
-	3	|	Joospe	|
+	0	|	Esimerkki	|	
+		|	d	|	

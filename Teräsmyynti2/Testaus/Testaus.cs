@@ -6,6 +6,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Text;
 using System.Drawing;
+using System.Windows.Forms;
 
 
 namespace Testaus
@@ -59,7 +60,7 @@ namespace Testaus
         public void Import_Test()
         {
             //Arrange
-            testForm1.lol = "viikottaiset";
+            testForm1.tbl1Data = "viikottaiset";
 
             // Act
             testForm1.sarakeLisa();
@@ -73,7 +74,7 @@ namespace Testaus
         public void Tulosta_Test()
         {
             //Arrange
-            testForm1.lol = "Main";
+            testForm1.tbl1Data = "Main";
           
 
             // Act
@@ -81,9 +82,65 @@ namespace Testaus
             
 
             // Assert
-            if (testForm1.lol + ".pdf" == "Main.pdf")
+            if (testForm1.tbl1Data + ".pdf" == "Main.pdf")
             {
                 Assert.IsTrue(true);
+            }
+            else
+            {
+                Assert.IsTrue(false);
+            }
+
+        }
+
+        [TestMethod]
+        public void Kirjautuminen_TestFail()
+        {
+            //Arrange
+          
+            Kirjautminen kirjautuminen_test = new Kirjautminen();
+
+            // Act
+            kirjautuminen_test.txtPassword.Text = "admin321";
+           
+
+            // Assert          
+            if (kirjautuminen_test.txtPassword.Text == "admin123")
+            {
+                using (StreamWriter Lukija_Test = new StreamWriter("salis.txt"))
+                {
+                    Lukija_Test.WriteLine(kirjautuminen_test.txtPassword.Text);
+                    Assert.IsTrue(false);
+                }
+                
+            }
+            else
+            {
+                Assert.IsTrue(true);
+            }
+
+        }
+
+        [TestMethod]
+        public void Kirjautuminen_TestSucceces()
+        {
+            //Arrange
+
+            Kirjautminen kirjautuminen_test = new Kirjautminen();
+
+            // Act
+            kirjautuminen_test.txtPassword.Text = "admin123";
+
+
+            // Assert          
+            if (kirjautuminen_test.txtPassword.Text == "admin123")
+            {
+                using (StreamWriter Lukija_Test = new StreamWriter("salis.txt"))
+                {
+                    Lukija_Test.WriteLine(kirjautuminen_test.txtPassword.Text);
+                    Assert.IsTrue(true);
+                }
+                
             }
             else
             {

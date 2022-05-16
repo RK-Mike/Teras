@@ -97,10 +97,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox checkbxShowPas;
         private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.TextBox txtPassword;
     }
 }

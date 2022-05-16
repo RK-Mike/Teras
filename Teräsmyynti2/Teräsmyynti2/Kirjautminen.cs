@@ -24,6 +24,8 @@ namespace Teräsmyynti2
 
         }
 
+
+        // Mikael TEKI TAMAN
         private void button1_Click(object sender, EventArgs e)
         {
             if ((txtPassword.Text == "admin123"))
@@ -32,8 +34,12 @@ namespace Teräsmyynti2
                 {
                     Lukija.WriteLine(txtPassword.Text);
                 }
+                // Ettei softa jaa pyorimaan taustalle
+                Form1 kirjaudu = new Form1();
                 this.Hide();
-                new Form1().Show();
+                kirjaudu.ShowDialog();
+                this.Close();
+            
             }
             else
             {
